@@ -4,7 +4,7 @@ A short description about the project and/or client.
 
 ## Results
 
-![](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![](https://github.com/heghesalexandrucristian/Object_Detection_MobileNetV3_OpenCV/blob/master/Results/peopleWalking.gif)
 
 ## Requirements
 Microsoft Visual Studio >= 2022
