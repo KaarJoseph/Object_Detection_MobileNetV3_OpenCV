@@ -1,4 +1,4 @@
-# SSD MobileNetv3 Object Detection Using OpenCV and C++
+# SSD MobileNetV3 Object Detection Using OpenCV and C++
 
 OpenCV, SSD_MobileNetV3 and C++ enable the development of a fast and accurate object detection app that can run on resource-constrained devices. 
 The app can process real-time video streams and identify objects in the scene, such as people, animals, and vehicles. 
