@@ -22,7 +22,7 @@ void ObjectDetector::setIODirectory(std::string inputDirectory, std::string outp
 
 std::string ObjectDetector::filePath(std::string fileDirectory, std::string fileName)
 {
-	std::string filePath = fileDirectory + "\\" + fileName;
+	std::string filePath = fileDirectory + "/" + fileName;
 	return filePath;
 }
 
@@ -60,6 +60,8 @@ int ObjectDetector::analyzeImage(std::string inputFilePath, std::string outputFi
 	cv::imwrite(outputFilePath, currentFrame);
 	cv::imshow("Result Window", currentFrame);
 	cv::waitKey(0);
+
+	cv::destroyAllWindows();
 	return 0;
 }
 
@@ -83,6 +85,7 @@ int ObjectDetector::analyzeVideo(std::string inputFilePath, std::string outputFi
 		if (!videoWriter.isOpened())
 			videoWriter.open(outputFilePath, -1, 25, cv::Size(currentFrame.cols, currentFrame.rows), true);
 
+		cv::imshow("Original", currentFrame);
 		analyzeFrame(currentFrame);
 		videoWriter.write(currentFrame);
 		cv::imshow("Result Window", currentFrame);

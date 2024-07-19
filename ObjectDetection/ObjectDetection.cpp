@@ -6,12 +6,14 @@ int main()
 {
 	cv::dnn::Net neuralNetwork;
 	std::vector<std::string> classes;
-	std::string inputDirectory = "..\\TestFiles";
-	std::string outputDirectory = "..\\Results";
+	std::string inputDirectory = "../TestFiles";
+	std::string outputDirectory = "../Results";
 
-	try 
-	{
-		neuralNetwork = cv::dnn::readNetFromTensorflow("..\\SSDMobileNetV3\\frozenInterfaceGraph.pb", "..\\SSDMobileNetV3\\frozenInterfaceGraph.pbtxt");
+	neuralNetwork.setPreferableTarget(cv::dnn::DNN_TARGET_CUDA);
+	neuralNetwork.setPreferableBackend(cv::dnn::DNN_BACKEND_CUDA);
+
+	try{
+		neuralNetwork = cv::dnn::readNetFromTensorflow("../SSDMobileNetV3/frozenInterfaceGraph.pb", "../SSDMobileNetV3/frozenInterfaceGraph.pbtxt");
 	}
 	catch (cv::Exception& error)
 	{
@@ -19,7 +21,7 @@ int main()
 		return 1;
 	}
 
-	std::ifstream classesFile("..\\SSDMobileNetV3\\classes.txt");
+	std::ifstream classesFile("../SSDMobileNetV3/classes.txt");
 	if (!classesFile.is_open())
 		return 1;
 
@@ -32,7 +34,8 @@ int main()
 	ObjectDetector objectDetector = ObjectDetector(neuralNetwork, classes);
 	objectDetector.setIODirectory(inputDirectory, outputDirectory);
 
-	processResult = objectDetector.detectObjects("town.jpg", ObjectDetector::SourceFileType::Image);
+	//processResult = objectDetector.detectObjects("Catedra-UNESCO-UPS-Imagen-Aula.jpg", ObjectDetector::SourceFileType::Image);
+	processResult = objectDetector.detectObjects("testVF2.mp4", ObjectDetector::SourceFileType::Video);
 
 	return processResult;
 }
